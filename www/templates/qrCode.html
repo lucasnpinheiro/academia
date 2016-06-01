@@ -1,0 +1,35 @@
+<ion-view view-title="Leitor de QR Code">
+    <ion-content>
+        <div class="card">
+            <div class="item item-divider">
+                <div class="button-bar">
+                    <a class="button button-balanced" ng-click="scanBarcode()"><i class="fa fa-qrcode" aria-hidden="true"></i> Ler QR Code</a>
+                </div>
+            </div>
+            <div class="item item-text-wrap">
+                <div>Text: {{text}}</div>
+                <div>Cancelled: {{cancelled}}</div>
+                <div>Format: {{format}}</div>
+                <div>Success: {{success}}</div>
+                <div>Error: {{error}}</div>
+            </div>
+            <div class="item item-divider">
+                <div class="button-bar" ng-if="cancelled != true">
+                    <a class="button button-dark" ng-click="abrir(text)"><i class="fa fa-external-link-square" aria-hidden="true"></i> Abrir</a>
+                </div>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item" ng-repeat="(key, value) in $storage.list" ng-class="'color' + ($index % 2)">
+                <div>Text: {{value.text}}</div>
+                <div>Format: {{value.format}}</div>
+                <div class="button-bar" ng-if="value.cancelled != true">
+                    <a class="button button-dark" ng-click="abrir(value.text)"><i class="fa fa-external-link-square" aria-hidden="true"></i> Abrir</a>
+                </div>
+            </div>
+        </div>
+        <div class="button-bar" ng-if="total > 0">
+            <a class="button button-assertive" ng-click="reset()"><i class="fa fa-trash" aria-hidden="true"></i> Excluir Histórico</a>
+        </div>
+    </ion-content>
+</ion-view>
